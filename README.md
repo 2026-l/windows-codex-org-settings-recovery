@@ -4,6 +4,15 @@
 
 A privacy-conscious recovery kit for one Windows failure mode where the ChatGPT/Codex desktop app stops at **“Unable to load organization settings.”**
 
+## Choose the guide by the error message
+
+| Symptom | Guide and `CODEX_CLI_PATH` action |
+| --- | --- |
+| `Unable to locate the Codex CLI binary` (or `spawn EINVAL` after pointing at `codex.cmd`) | [Native CLI workaround](https://github.com/2026-l/chatgpt-windows-codex-cli-fix/blob/main/README.md): set the **User** value to the verified native `codex.exe`, not the `codex.cmd` wrapper. |
+| `Unable to load organization settings` | [Organization-settings recovery](https://github.com/2026-l/windows-codex-org-settings-recovery/blob/main/README.md): diagnose first; if an unexpected **User** override is present, preview the repair, back it up, clear it, and **restart Windows** before retesting. |
+
+> **Do not apply both remedies in sequence.** They address different reported symptoms and make opposite changes to the same variable. Setting it is not a general fix for organization-settings errors; clearing it is not a general fix for a missing CLI binary. The organization-settings guide records **one confirmed recovery**, not a proven root cause or universal fix. If the error changes, reassess using the matching guide instead of toggling the variable. If it is intentionally administrator-managed, ask the administrator before changing it.
+
 ## What this project establishes
 
 In one confirmed case, a user-scoped `CODEX_CLI_PATH` pointed to an npm-installed `codex.exe`. Removing the **User** environment variable and then restarting Windows restored both ChatGPT and Work.
